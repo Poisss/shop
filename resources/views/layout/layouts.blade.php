@@ -8,62 +8,67 @@
     </head>
     <body>
         <div class="wrapper">
-            <header>
-                <h1>Название проекта</h1>
-                <nav>
-                    <ul>
-                        <li>
-                            <a href="info">
-                                О нас
-                            </a>
-                        </li>
-                        <li>
-                            <a href="categories">
-                                Категории
-                            </a>
-                        </li>
-                        <li>
-                            <a href="products">
-                                Товары
-                            </a>
-                        </li>
-                        <li>
-                            <a href="info">
-                                Контакты
-                            </a>
-                        </li>
-                    </ul>
-                </nav>
+            <header class="wrapper-item">
+                <div class="border-content">
+                    <h1 class="header-title">Poirus</h1>
+                    <nav>
+                        <ul class="nav">
+                            <li>
+                                <a href="info">
+                                    О нас
+                                </a>
+                            </li>
+                            <li>
+                                <a href="categories">
+                                    Категории
+                                </a>
+                            </li>
+                            <li>
+                                <a href="products">
+                                    Товары
+                                </a>
+                            </li>
+                            <li>
+                                <a href="info">
+                                    Контакты
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
             </header>
             <div class="content">
-                @yield('content')
+                <div class="border-content">
+                    @yield('content')
+                </div>
             </div>
             <footer>
-                <p></p>
-                <nav>
-                    <ul>
-                        <li>
-                            <a href="info">
-                                О нас
-                            </a>
-                        </li>
-                        <li>
-                            <a href="info">
-                                Категории
-                            </a>
-                        </li>
-                        <li>
-                            <a href="products">
-                                Товары
-                            </a>
-                        </li>
-                        <li>
-                            <a href="info">
-                                Контакты
-                            </a>
-                        </li>
-                    </ul>
-                </nav>
+                <div class="border-content">
+                    <nav>
+                        <ul class="nav">
+                            <li>
+                                <a href="info">
+                                    О нас
+                                </a>
+                            </li>
+                            <li>
+                                <a href="info">
+                                    Категории
+                                </a>
+                            </li>
+                            <li>
+                                <a href="products">
+                                    Товары
+                                </a>
+                            </li>
+                            <li>
+                                <a href="info">
+                                    Контакты
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
             </footer>
         </div>
     </body>
