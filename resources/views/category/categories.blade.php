@@ -3,7 +3,7 @@
 @section('content')
 <h2>О нас</h2>
 <div class="content_column">
-    @foreach(@data->product as $prod)
+    @foreach($data->product as $prod)
         <div class="product_item">
             <div>
                 <h2>{{$prod->name}}</h2>

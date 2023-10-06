@@ -1,9 +1,9 @@
 @extends('layout.layouts')
 @section('title','Товары')
 @section('content')
-<h2>О нас</h2>
+<a href="{{ route('products.create') }}">Добавить товар</a>
 <div class="content_column">
-    @foreach(@data->product as $prod)
+    @foreach($data->product as $prod)
     <a href="/products/{{$prod->id}}">
         <div class="product_item">
             <div>

@@ -1,4 +1,4 @@
-@extends('layouts')
+@extends('layout.layouts')
 @section('title','О нас')
 @section('content')
 <h2>О нас</h2>

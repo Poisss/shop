@@ -27,6 +27,9 @@ class ProductController extends Controller
         ];
         return view('product.show')->with(['data'=>$data]);
     }
+    public function create(){
+        return view('product.create');
+    }
     public function store(){
 
     }
