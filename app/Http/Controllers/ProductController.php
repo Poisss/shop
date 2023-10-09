@@ -48,10 +48,18 @@ class ProductController extends Controller
             return redirect()->route('products.index')->with('success','Товар добавлен');
         }
     }
-    public function update(){
-
+    public function edit(string $id){
+        $category=Category::all();
+        $pro=Product::find($id);
+        return view('product.edit',compact('pro'))->with(['category'=>$category]);
     }
-    public function destroy(){
-
+    public function update(Request $request,Product $product){
+        $product->update($request->all());
+        return  redirect()->route('products.index')->with('success','Товар изменен');
+    }
+    public function destroy(string $id){
+       $product=Product::find($id);
+       $product->delete();
+        return  redirect()->route('products.index')->with('success','Товар Удален');
     }
 }

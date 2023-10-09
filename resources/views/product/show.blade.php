@@ -21,6 +21,14 @@
                     Характеристики:{{$data->description}}
                 </p>
                 <a href="{{route('products.index')}}">Назад</a>
+                <br><br>
+                <a href="{{route('products.edit',$data->id)}}">Редактировать</a>
+                <br><br>
+                <form action="{{route('products.destroy',$data->id)}}" method="POST">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit">Удалить</button>
+                </form>
             </div>
         </div>
     </div>

@@ -3,6 +3,11 @@
 @section('content')
 <div class="content_row">
     <h2 class="header-title">Добавление товара</h2>
+    @if(session()->has('success'))
+        <div class="content_row" style="color: red">
+            {{session()->get('success')}}
+        </div>
+    @endif
     <div>
         <form action="{{route('products.store')}}" method="post">
             @csrf

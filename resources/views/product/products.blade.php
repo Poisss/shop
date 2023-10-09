@@ -2,6 +2,12 @@
 @section('title','Товары')
 @section('content')
 <a href="{{ route('products.create') }}" class="product-add">Добавить товар</a>
+
+@if(session()->has('success'))
+    <div class="content_row" style="color: green">
+        {{session()->get('success')}}
+    </div>
+@endif
 <div class="content_column">
     @foreach($data->product as $prod)
     <a href="/products/{{$prod->id}}">
