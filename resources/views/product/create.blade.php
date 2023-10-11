@@ -9,7 +9,7 @@
         </div>
     @endif
     <div>
-        <form action="{{route('products.store')}}" method="post">
+        <form action="{{route('products.store')}}" method="post" enctype="multipart/form-data">
             @csrf
             <div class="form_group">
                 <input class="input-create" type="text" name="name" placeholder="Введите название" value="" required>
@@ -31,6 +31,9 @@
                     </option>
                 @endforeach
             </select>
+            <div class="form_group">
+                <input class="input-create" type="file" name="image" required>
+            </div>
             <div class="form_group">
                 <input class="input-create" type="submit"value="Добавить">
             </div>

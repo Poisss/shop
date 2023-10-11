@@ -10,6 +10,7 @@
         </div>
         <div class="content_column">
             <div class="text_content">
+                <img src="{{asset('public/'.$data->image)}}" alt="{{$data->name}}" class="product_img">
                 <h3>
                     Описание:
                 </h3>

@@ -29,3 +29,6 @@ Route::get('/info',[UserController::class,'info'])->name('info');
 
 Route::resource('/products',ProductController::class);
 Route::resource('/categories',CategoryController::class);
+
+Route::get('/create',[UserController::class,'create'])->name('create');
+Route::post('/create',[UserController::class,'store'])->name('store');

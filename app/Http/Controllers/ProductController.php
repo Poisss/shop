@@ -23,6 +23,7 @@ class ProductController extends Controller
             'id'=>$product->id,
             'name'=>$product->name,
             'price'=>$product->price,
+            'image'=>$product->image,
             'description'=>$product->description,
             'category'=>$product->category->name
         ];
@@ -37,6 +38,7 @@ class ProductController extends Controller
             'name'=>['required','max:125'],
             'price'=>'required',
             'qty'=>'required',
+            'image'=>'required|file|mimes:png,jpg,jpeg,svg',
             'description'=>'nullable',
             'category_id'=>'required'
         ]);
@@ -44,7 +46,12 @@ class ProductController extends Controller
             $msg='Ошибка при заполнении формы';
             return redirect()->route('products.create')->with('success','Ошибка при заполнении формы');
         }else{
-            Product::create($validator->validated());
+            $image_name=time().'.'.$request->file('image')->extension();
+            $path='images/products/';
+            $request->file('image')->move(public_path($path),$image_name);
+            Product::create([
+                'image'=>$path.$image_name
+            ]+$validator->validated());
             return redirect()->route('products.index')->with('success','Товар добавлен');
         }
     }

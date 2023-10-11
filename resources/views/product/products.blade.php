@@ -13,7 +13,7 @@
     <a href="/products/{{$prod->id}}">
         <div class="product_item">
             <div>
-                <img src="{{asset('public/img/img2.jpg')}}" alt="product" class="product_img">
+                <img src="{{asset('public/'.$prod->image)}}" alt="{{$prod->name}}" class="product_img">
                 <h2>{{$prod->name}}</h2>
                 <h3>{{$prod->price}} ₽</h3>
             </div>
