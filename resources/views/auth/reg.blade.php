@@ -29,6 +29,9 @@
                 <input class="input-create" type="password" name="password_confirmation" placeholder="Подтвердите пароль" value="" required>
             </div>
             <div class="form_group">
+                <p>Уже Зарегистрированы? <a href="login">Авторизуйтесь</a></p>
+            </div>
+            <div class="form_group">
                 <input class="input-create" type="submit"value="Зарегистрироваться">
             </div>
         </form>

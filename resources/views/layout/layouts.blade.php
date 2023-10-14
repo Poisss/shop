@@ -35,7 +35,7 @@
                             </li>
                         </ul>
                         <a href="create">Регистрация</a>
-                        <a href="">Вход</a>
+                        <a href="login">Вход</a>
                     </nav>
                 </div>
             </header>
