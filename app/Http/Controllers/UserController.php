@@ -24,13 +24,13 @@ class UserController extends Controller
             'lastname'=>['required','alpha'],
             'patronymic'=>['nullable'],
             'email'=>['email','unique:users'],
-            'password'=>['required','min:6','confirmed'],
+            'password'=>['required','min:6','confirmed']
         ]);
         if($validator->fails()){
             return redirect()->route('create')->with('success','Ошибка регистрации');
         }
         else{
-            User::create($request->all());
+            User::create($validator->validated());
             return redirect()->route('login')->with('success','Регистрации прошла успешно');
         }
     }
@@ -39,7 +39,10 @@ class UserController extends Controller
     }
     public function signup(Request $request){
         if(Auth::attempt($request->only(['email','password']))){
-            return redirect()->route('index')->with('success','Вы авторизованы');
+            return redirect()->route('info')->with('success','Вы авторизованы');
+        }
+        else{
+            return redirect()->route('login')->with('success','Ошибка авторизации');
         }
     }
 

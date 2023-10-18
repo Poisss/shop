@@ -34,8 +34,8 @@ class CategoryController extends Controller
         $pro=Category::find($id);
         return view('category.edit',compact('pro'));
     }
-    public function update(Request $request,Category $product){
-        $product->update($request->all());
+    public function update(Request $request,Category $category){
+        $category->update($request->all());
         return  redirect()->route('categories.index')->with('success','Товар изменен');
     }
     public function destroy(string $id){
