@@ -19,6 +19,10 @@
 header,footer{
     background: rgb(128, 128, 128,0.7);
 }
+.header-log{
+    display: grid;
+    grid-template-columns: 1fr auto;
+}
 .header-title{
     margin-bottom: 15px;
 }

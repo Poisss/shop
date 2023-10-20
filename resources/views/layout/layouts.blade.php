@@ -10,32 +10,38 @@
         <div class="wrapper">
             <header class="wrapper-item">
                 <div class="border-content">
-                    <h1 class="header-title">Poirus</h1>
+                    <div class="header-log">
+                        <div>
+                            <h1 class="header-title">Poirus</h1>
+                        </div>
+                        <div>
+                            <a href="create">Регистрация</a>
+                            <a href="login">Вход</a>
+                        </div>
+                    </div>
                     <nav>
                         <ul class="nav">
                             <li>
-                                <a href="info">
+                                <a href="/info">
                                     О нас
                                 </a>
                             </li>
                             <li>
-                                <a href="categories">
+                                <a href="/categories">
                                     Категории
                                 </a>
                             </li>
                             <li>
-                                <a href="products">
+                                <a href="/products">
                                     Товары
                                 </a>
                             </li>
                             <li>
-                                <a href="info">
+                                <a href="/info">
                                     Контакты
                                 </a>
                             </li>
                         </ul>
-                        <a href="create">Регистрация</a>
-                        <a href="login">Вход</a>
                     </nav>
                 </div>
             </header>
