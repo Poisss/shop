@@ -15,13 +15,18 @@
                             <h1 class="header-title">Poirus</h1>
                         </div>
                         <div>
-                            <a href="create">Регистрация</a>
-                            <a href="login">Вход</a>
+                            @if ($data->role=='quest')
+                                <a href="/create">Регистрация</a>
+                                <a href="/login">Вход</a>
+                            @endif
+                            @if ($data->role=='user')
+                                <a href="/logout">Выход</a>
+                            @endif
                         </div>
                     </div>
                     <nav>
                         <ul class="nav">
-                            <li>
+                            <li class="nav-element">
                                 <a href="/info">
                                     О нас
                                 </a>
@@ -52,30 +57,29 @@
             </div>
             <footer>
                 <div class="border-content">
-                    <nav>
-                        <ul class="nav">
-                            <li>
-                                <a href="info">
-                                    О нас
-                                </a>
-                            </li>
-                            <li>
-                                <a href="info">
-                                    Категории
-                                </a>
-                            </li>
-                            <li>
-                                <a href="products">
-                                    Товары
-                                </a>
-                            </li>
-                            <li>
-                                <a href="info">
-                                    Контакты
-                                </a>
-                            </li>
-                        </ul>
-                    </nav>
+                    <ul class="nav">
+                        <li>
+                           <a href="info">
+                                О нас
+                            </a>
+                        </li>
+                        <li>
+                            <a href="info">
+                                   Категории
+                           </a>
+                        </li>
+                        <li>
+                            <a href="products">
+                                Товары
+                           </a>
+                        </li>
+                        <li>
+                            <a href="info">
+                                Контакты
+                            </a>
+                        </li>
+                    </ul>
+                    <hr>
                 </div>
             </footer>
         </div>

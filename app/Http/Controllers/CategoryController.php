@@ -4,19 +4,38 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Category;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
 class CategoryController extends Controller
 {
+    public $user_id;
+    public $user_role;
+
+    public function authUser(){
+        if(Auth::check()){
+            $user=Auth::user();
+            $this->user_id=$user->id;
+            $this->user_role=$user->role;
+        }else{
+            $this->user_role='quest';
+        }
+    }
     public function index(){
         $product=Category::all();
+        $this->authUser();
         $data=(object)[
-            'product'=>$product
+            'product'=>$product,
+            'role'=>$this->user_role,
         ];
         return view('category.categories')->with(['data'=>$data]);
     }
     public function create(){
-        return view('category.create');
+        $this->authUser();
+        $data=(object)[
+            'role'=>$this->user_role,
+        ];
+        return view('category.create')->with(['data'=>$data]);
     }
     public function store(Request $request){
         $validator=Validator::make($request->all(),[
@@ -32,7 +51,11 @@ class CategoryController extends Controller
     }
     public function edit(string $id){
         $pro=Category::find($id);
-        return view('category.edit',compact('pro'));
+        $this->authUser();
+        $data=(object)[
+            'role'=>$this->user_role,
+        ];
+        return view('category.edit',compact('pro'))->with(['data'=>$data]);
     }
     public function update(Request $request,Category $category){
         $category->update($request->all());

@@ -6,13 +6,16 @@
         {{session()->get('success')}}
     </div>
 @endif
+@if ($data->role=='user')
+<a href="{{ route('categories.create') }}" class="product-add">Добавить категорию</a>
+@endif
 <div class="content_column">
-    <a href="{{ route('categories.create') }}" class="product-add">Добавить категорию</a>
     @foreach($data->product as $prod)
-        <div class="product_item categoty-item">
+        <div class="product_item product_item-block categoty-item">
             <div>
                 <h2>{{$prod->name}}</h2>
                 <br><br>
+                @if ($data->role=='user')
                 <a href="{{route('categories.edit',$prod->id)}}">Редактировать</a>
                 <br><br>
                 <form action="{{route('categories.destroy',$prod->id)}}" method="POST">
@@ -20,6 +23,7 @@
                     @method('DELETE')
                     <button type="submit">Удалить</button>
                 </form>
+                @endif
             </div>
         </div>
     @endforeach

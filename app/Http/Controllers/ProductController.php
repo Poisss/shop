@@ -6,32 +6,53 @@ use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Auth;
 
 class ProductController extends Controller
 {
+    public $user_id;
+    public $user_role;
+
+    public function authUser(){
+        if(Auth::check()){
+            $user=Auth::user();
+            $this->user_id=$user->id;
+            $this->user_role=$user->role;
+        }else{
+            $this->user_role='quest';
+        }
+    }
     public function index(){
-        $product=Product::all();
+        $product=Product::where('qty','!=',0)->get();
+        $this->authUser();
         $data=(object)[
-            'product'=>$product
+            'product'=>$product,
+            'role'=>$this->user_role,
         ];
         return view('product.products')->with(['data'=>$data]);
     }
     public function show(Request $request, $id){
         $product=Product::find($id);
         $category=Category::find($product->category_id)->name;
+        $this->authUser();
         $data=(object)[
             'id'=>$product->id,
             'name'=>$product->name,
             'price'=>$product->price,
             'image'=>$product->image,
             'description'=>$product->description,
-            'category'=>$product->category->name
+            'category'=>$product->category->name,
+            'role'=>$this->user_role,
         ];
         return view('product.show')->with(['data'=>$data]);
     }
     public function create(){
         $category=Category::all();
-        return view('product.create')->with(['category'=>$category]);
+        $this->authUser();
+        $data=(object)[
+            'role'=>$this->user_role,
+        ];
+        return view('product.create')->with(['category'=>$category,'data'=>$data]);
     }
     public function store(Request $request){
         $validator=Validator::make($request->all(),[
@@ -58,7 +79,11 @@ class ProductController extends Controller
     public function edit(string $id){
         $category=Category::all();
         $pro=Product::find($id);
-        return view('product.edit',compact('pro'))->with(['category'=>$category]);
+        $this->authUser();
+        $data=(object)[
+            'role'=>$this->user_role,
+        ];
+        return view('product.edit',compact('pro'))->with(['category'=>$category,'data'=>$data]);
     }
     public function update(Request $request,Product $product){
         $product->update($request->all());

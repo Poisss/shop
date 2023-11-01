@@ -9,14 +9,37 @@ use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller
 {
+    public $user_id;
+    public $user_role;
+    public function authUser(){
+        if(Auth::check()){
+            $user=Auth::user();
+            $this->user_id=$user->id;
+            $this->user_role=$user->role;
+        }else{
+            $this->user_role='quest';
+        }
+    }
     public function home(){
-        return view('layout.layouts');
+        $this->authUser();
+        $data=(object)[
+            'role'=>$this->user_role,
+        ];
+        return view('layout.layouts')->with(['data'=>$data]);
     }
     public function info(){
-        return view('layout.info');
+        $this->authUser();
+        $data=(object)[
+            'role'=>$this->user_role,
+        ];
+        return view('layout.info')->with(['data'=>$data]);
     }
     public function create(){
-        return view('auth.reg');
+        $this->authUser();
+        $data=(object)[
+            'role'=>$this->user_role,
+        ];
+        return view('auth.reg')->with(['data'=>$data]);
     }
     public function store(Request $request){
         $validator=Validator::make($request->all(),[
@@ -35,7 +58,11 @@ class UserController extends Controller
         }
     }
     public function login(){
-        return view('auth.auth');
+        $this->authUser();
+        $data=(object)[
+            'role'=>$this->user_role,
+        ];
+        return view('auth.auth')->with(['data'=>$data]);
     }
     public function signup(Request $request){
         if(Auth::attempt($request->only(['email','password']))){
@@ -45,5 +72,10 @@ class UserController extends Controller
             return redirect()->route('login')->with('success','Ошибка авторизации');
         }
     }
-
+    public function logout(){
+        if(Auth::check()){
+            Auth::logout();
+        }
+        return redirect()->route('info')->with('success','Вы вышли');
+    }
 }

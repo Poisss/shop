@@ -4,11 +4,11 @@
 <div class="content_row">
     <h2>Регистрация</h2>
     <div>
-        {{-- @if(session()->has('success'))
+        @if(session()->has('success'))
         <div>
             {{session()->get('success')}}
         </div>
-        @endif --}}
+        @endif
         <form action="{{route('store')}}" method="post" name="login">
             @csrf
             <div class="form_group">

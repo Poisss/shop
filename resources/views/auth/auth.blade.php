@@ -2,13 +2,13 @@
 @section('title','Авторизация')
 @section('content')
 <div class="content_row">
-    <h2>Регистрация</h2>
+    <h2>Авторизация</h2>
     <div>
-        {{-- @if(session()->has('success'))
+        @if(session()->has('success'))
         <div>
             {{session()->get('success')}}
         </div>
-        @endif --}}
+        @endif
         <form action="{{route('signup')}}" method="post" name="signup">
             @csrf
             <div class="form_group">
