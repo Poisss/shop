@@ -35,7 +35,12 @@ class CategoryController extends Controller
         $data=(object)[
             'role'=>$this->user_role,
         ];
-        return view('category.create')->with(['data'=>$data]);
+        if($data->role=='admin'){
+            return view('category.create')->with(['data'=>$data]);
+        }else{
+            return view('layout.noaccess')->with(['data'=>$data]);
+        }
+
     }
     public function store(Request $request){
         $validator=Validator::make($request->all(),[
@@ -56,6 +61,11 @@ class CategoryController extends Controller
             'role'=>$this->user_role,
         ];
         return view('category.edit',compact('pro'))->with(['data'=>$data]);
+        if($data->role=='admin'){
+            return view('category.edit',compact('pro'))->with(['data'=>$data]);
+        }else{
+            return view('layout.noaccess')->with(['data'=>$data]);
+        }
     }
     public function update(Request $request,Category $category){
         $category->update($request->all());

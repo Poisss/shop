@@ -1,7 +1,7 @@
 @extends('layout.layouts')
 @section('title','Товары')
 @section('content')
-@if ($data->role=='user')
+@if ($data->role=='admin')
 <a href="{{ route('products.create') }}" class="product-add">Добавить товар</a>
 @endif
 @if(session()->has('success'))

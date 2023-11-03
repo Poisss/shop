@@ -52,7 +52,11 @@ class ProductController extends Controller
         $data=(object)[
             'role'=>$this->user_role,
         ];
-        return view('product.create')->with(['category'=>$category,'data'=>$data]);
+        if($data->role=='admin'){
+            return view('product.create')->with(['category'=>$category,'data'=>$data]);
+        }else{
+            return view('layout.noaccess')->with(['data'=>$data]);
+        }
     }
     public function store(Request $request){
         $validator=Validator::make($request->all(),[
@@ -83,7 +87,11 @@ class ProductController extends Controller
         $data=(object)[
             'role'=>$this->user_role,
         ];
-        return view('product.edit',compact('pro'))->with(['category'=>$category,'data'=>$data]);
+        if($data->role=='admin'){
+            return view('product.edit',compact('pro'))->with(['category'=>$category,'data'=>$data]);
+        }else{
+            return view('layout.noaccess')->with(['data'=>$data]);
+        }
     }
     public function update(Request $request,Product $product){
         $product->update($request->all());

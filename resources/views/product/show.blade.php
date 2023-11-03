@@ -22,7 +22,7 @@
                     Характеристики:{{$data->description}}
                 </p>
                 <a href="{{route('products.index')}}">Назад</a>
-                @if ($data->role=='user')
+                @if ($data->role=='admin')
                 <br><br>
                 <a href="{{route('products.edit',$data->id)}}">Редактировать</a>
                 <br><br>

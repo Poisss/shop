@@ -19,7 +19,7 @@
                                 <a href="/create">Регистрация</a>
                                 <a href="/login">Вход</a>
                             @endif
-                            @if ($data->role=='user')
+                            @if ($data->role=='user'||$data->role=='admin')
                                 <a href="/logout">Выход</a>
                             @endif
                         </div>

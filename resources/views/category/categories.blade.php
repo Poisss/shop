@@ -6,7 +6,7 @@
         {{session()->get('success')}}
     </div>
 @endif
-@if ($data->role=='user')
+@if ($data->role=='admin')
 <a href="{{ route('categories.create') }}" class="product-add">Добавить категорию</a>
 @endif
 <div class="content_column">
@@ -15,7 +15,7 @@
             <div>
                 <h2>{{$prod->name}}</h2>
                 <br><br>
-                @if ($data->role=='user')
+                @if ($data->role=='admin')
                 <a href="{{route('categories.edit',$prod->id)}}">Редактировать</a>
                 <br><br>
                 <form action="{{route('categories.destroy',$prod->id)}}" method="POST">
