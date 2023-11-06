@@ -37,7 +37,7 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="/products">
+                                <a href="/catalog">
                                     Товары
                                 </a>
                             </li>
@@ -69,7 +69,7 @@
                            </a>
                         </li>
                         <li>
-                            <a href="products">
+                            <a href="catalog">
                                 Товары
                            </a>
                         </li>
@@ -83,5 +83,8 @@
                 </div>
             </footer>
         </div>
+        <script src="{{asset('public/js/js.js')}}">
+
+        </script>
     </body>
 </html>

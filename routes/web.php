@@ -27,8 +27,10 @@ Route::get('/info',[UserController::class,'info'])->name('info');
 // Route::patch('/products/{id}',[ProductController::class,'update']);
 // Route::delete('/products/{id}',[ProductController::class,'destroy']);
 
-Route::resource('/products',ProductController::class);
+Route::resource('/products',ProductController::class)->except('index');
 Route::resource('/categories',CategoryController::class);
+Route::get('sort/{id}/{sort}',[ProductController::class,'sort'])->name('sort');
+Route::get('catalog',[ProductController::class,'catalog'])->name('catalog');
 
 Route::get('/create',[UserController::class,'create'])->name('create');
 Route::post('/create',[UserController::class,'store'])->name('store');

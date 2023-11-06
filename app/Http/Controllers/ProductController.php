@@ -22,12 +22,28 @@ class ProductController extends Controller
             $this->user_role='quest';
         }
     }
-    public function index(){
-        $product=Product::where('qty','!=',0)->get();
+    public function sort(Request $request,$id,$sort){
+        $request->session()->flash('sort',$sort);
+        return redirect()->route('catalog',['id'=>$id]);
+    }
+    public function catalog(Request $request){
         $this->authUser();
+
+        if($request->session()->get('sort')=='name'){
+            $product=Product::with('category')->where('qty','!=',0)->orderBy('name','DESC')->get();
+        }
+        elseif($request->session()->get('sort')=='price'){
+            $product=Product::with('category')->where('qty','!=',0)->orderBy('price','ASC')->get();
+        }
+        else{
+            $product=Product::with('category')->where('qty','!=',0)->latest()->get();
+        }
+        $category=Category::all();
+        // $product=Product::where('qty','!=',0)->get();
         $data=(object)[
             'product'=>$product,
             'role'=>$this->user_role,
+            'category'=>$category,
         ];
         return view('product.products')->with(['data'=>$data]);
     }
@@ -77,7 +93,7 @@ class ProductController extends Controller
             Product::create([
                 'image'=>$path.$image_name
             ]+$validator->validated());
-            return redirect()->route('products.index')->with('success','Товар добавлен');
+            return redirect()->route('products.catalog')->with('success','Товар добавлен');
         }
     }
     public function edit(string $id){
@@ -95,11 +111,11 @@ class ProductController extends Controller
     }
     public function update(Request $request,Product $product){
         $product->update($request->all());
-        return  redirect()->route('products.index')->with('success','Товар изменен');
+        return  redirect()->route('products.catalog')->with('success','Товар изменен');
     }
     public function destroy(string $id){
        $product=Product::find($id);
        $product->delete();
-        return  redirect()->route('products.index')->with('success','Товар Удален');
+        return  redirect()->route('products.catalog')->with('success','Товар Удален');
     }
 }

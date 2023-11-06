@@ -1,6 +1,20 @@
 @extends('layout.layouts')
 @section('title','Товары')
 @section('content')
+<nav class="filtr">
+    <a href="sort/1/name">По наименованию</a>
+    <a href="sort/1/price">По цене</a>
+    <a href="sort/1/price">По новизне</a>
+    <select name="select_filtr" id="" onchange="filtr(event)">
+        <option value="Все" selected>Все</option>
+        @foreach ($data->category as $categ)
+
+            <option value="{{$categ->name}}">
+                {{$categ->name}}
+            </option>
+        @endforeach
+    </select>
+</nav>
 @if ($data->role=='admin')
 <a href="{{ route('products.create') }}" class="product-add">Добавить товар</a>
 @endif
