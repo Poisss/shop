@@ -5,7 +5,7 @@
     <a href="sort/1/name">По наименованию</a>
     <a href="sort/1/price">По цене</a>
     <a href="sort/1/price">По новизне</a>
-    <select name="select_filtr" id="" onchange="filtr(event)">
+    <select name="select_filtr" class="categoty" id="" onchange="filtr(event)">
         <option value="Все" selected>Все</option>
         @foreach ($data->category as $categ)
 
@@ -36,4 +36,18 @@
     </a>
     @endforeach
 </div>
+<script>
+    let category=document.querySelector('.categoty')
+    category.addEventListener('change',(e)=>{
+        $.ajax({
+        url: 'http://shop/sort/1/',
+        method: 'post',
+        dataType: 'html',
+        data: {text: 'Текст'},
+        success: function(data){
+        console.log(data);
+    }
+});
+    })
+</script>
 @endsection
