@@ -38,3 +38,4 @@ Route::post('/create',[UserController::class,'store'])->name('store');
 Route::get('/login',[UserController::class,'login'])->name('login');
 Route::post('/signup',[UserController::class,'signup'])->name('signup');
 Route::get('/logout',[UserController::class,'logout'])->name('logout');
+Route::get('/basket',[UserController::class,'basket'])->name('basket');

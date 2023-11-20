@@ -14,12 +14,18 @@
                         <div>
                             <h1 class="header-title">Poirus</h1>
                         </div>
-                        <div>
+                        <div class="header-log-menu">
                             @if ($data->role=='quest')
                                 <a href="/create">Регистрация</a>
                                 <a href="/login">Вход</a>
                             @endif
                             @if ($data->role=='user'||$data->role=='admin')
+                                <a href="/basket" class="basket">
+                                    <img src="{{asset('public/images/basket.png')}}" alt="" class="basket-img">
+                                    {{-- @if ($data->qte>1)
+                                        <div class="basket-qty">2</div>
+                                    @endif --}}
+                                </a>
                                 <a href="/logout">Выход</a>
                             @endif
                         </div>

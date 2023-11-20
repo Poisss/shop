@@ -27,6 +27,11 @@ hr{
     display: grid;
     grid-template-columns: 1fr auto;
 }
+.header-log-menu{
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
 .header-title{
     margin-bottom: 15px;
 }
@@ -47,6 +52,32 @@ a{
 }
 a:hover{
     top: -2px;
+}
+.basket{
+    width: 35px;
+    height: 35px;
+    background: white;
+    border-radius: 50px;
+    position: relative;
+}
+.basket-img{
+    width: 20px;
+    height: 20px;
+    position: relative;
+    top: 7px;
+    left: 6px;
+}
+.basket-qty{
+    display: grid;
+    align-content: center;
+    justify-content: center;
+    position: relative;
+    top: 1px;
+    left: 25px;
+    width: 20px;
+    height: 20px;
+    background: red;
+    border-radius: 50px;
 }
 .content_column{
     display: grid;

@@ -27,6 +27,14 @@ class UserController extends Controller
         ];
         return view('layout.layouts')->with(['data'=>$data]);
     }
+    public function basket(){
+        
+        $this->authUser();
+        $data=(object)[
+            'role'=>$this->user_role,
+        ];
+        return view('purchase.basket')->with(['data'=>$data]);
+    }
     public function info(){
         $this->authUser();
         $data=(object)[
