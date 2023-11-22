@@ -93,7 +93,7 @@ class ProductController extends Controller
             Product::create([
                 'image'=>$path.$image_name
             ]+$validator->validated());
-            return redirect()->route('products.catalog')->with('success','Товар добавлен');
+            return redirect()->route('catalog')->with('success','Товар добавлен');
         }
     }
     public function edit(string $id){
@@ -111,11 +111,11 @@ class ProductController extends Controller
     }
     public function update(Request $request,Product $product){
         $product->update($request->all());
-        return  redirect()->route('products.catalog')->with('success','Товар изменен');
+        return  redirect()->route('catalog')->with('success','Товар изменен');
     }
     public function destroy(string $id){
        $product=Product::find($id);
        $product->delete();
-        return  redirect()->route('products.catalog')->with('success','Товар Удален');
+        return  redirect()->route('catalog')->with('success','Товар Удален');
     }
 }

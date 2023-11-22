@@ -21,7 +21,7 @@
                 <p>
                     Характеристики:{{$data->description}}
                 </p>
-                <a href="{{route('products.index')}}">Назад</a>
+                <a href="{{route('catalog')}}">Назад</a>
                 @if ($data->role=='admin')
                 <br><br>
                 <a href="{{route('products.edit',$data->id)}}">Редактировать</a>
