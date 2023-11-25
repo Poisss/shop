@@ -27,10 +27,12 @@ class UserController extends Controller
         ];
         return view('layout.layouts')->with(['data'=>$data]);
     }
-    public function basket(){
-        
+    public function basket(Request $request){
+
         $this->authUser();
+        $value = $request->session()->get('basket');
         $data=(object)[
+            'basket'=>$value,
             'role'=>$this->user_role,
         ];
         return view('purchase.basket')->with(['data'=>$data]);
