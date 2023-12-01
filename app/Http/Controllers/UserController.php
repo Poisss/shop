@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Category;
 use Illuminate\Http\Request;
+use App\Models\Product;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
@@ -28,11 +30,33 @@ class UserController extends Controller
         return view('layout.layouts')->with(['data'=>$data]);
     }
     public function basket(Request $request){
-
         $this->authUser();
-        $value = $request->session()->get('basket');
+        $test=[];
+        $basket=[];
+        $request->session()->put('basket', [['id'=>5,'qty'=>2],['id'=>6,'qty'=>2]]);
+        if($request->session()->has('basket')){
+            $value = $request->session()->get('basket');
+            foreach ($value as $key => $value) {
+                $product=Product::find($value['id']);
+                $category=Category::find($product->category_id)->name;
+                $this->authUser();
+                $data=(object)[
+                    'id'=>$product->id,
+                    'name'=>$product->name,
+                    'price'=>$product->price,
+                    'image'=>$product->image,
+                    'description'=>$product->description,
+                    'category'=>$product->category->name,
+                    'role'=>$this->user_role,
+                    'qty'=>$value['qty'],
+                ];
+                array_push($basket, $data);
+                array_push($test, $value);
+            }
+        }
         $data=(object)[
-            'basket'=>$value,
+            'test'=>$test,
+            'basket'=>$basket,
             'role'=>$this->user_role,
         ];
         return view('purchase.basket')->with(['data'=>$data]);
